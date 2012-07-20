@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>peterboem.nl</groupId>
+  <artifactId>powerlaws</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Power Laws</name>
+  <description>Implementation of the methods described in [Clauset, Shalizi, Newman 2007] for estimating parameters of power law distributions.</description>
+	 <build>
+		  <resources>
+			<resource>
+		      <directory>src/main/resources</directory>
+		    </resource>
+		  </resources>
+		  <pluginManagement>
+		    <plugins>
+		      <plugin>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <version>2.3.2</version>
+		        <configuration>
+		    		<source>1.6</source>
+		    		<target>1.6</target>
+		 		</configuration>
+		        <executions>
+		          <execution>
+		            <id>default-testCompile</id>
+		            <phase>test-compile</phase>
+		            <goals>
+		              <goal>testCompile</goal>
+		            </goals>
+		          </execution>
+		          <execution>
+		            <id>default-compile</id>
+		            <phase>compile</phase>
+		            <goals>
+		              <goal>compile</goal>
+		            </goals>
+		          </execution>
+		        </executions>
+		      </plugin>
+		    </plugins>
+		  </pluginManagement>
+	  </build>
+	 <dependencies>
+	 	<dependency>
+	 		<groupId>junit</groupId>
+	 		<artifactId>junit</artifactId>
+	 		<version>4.10</version>
+	 	</dependency>
+	 </dependencies>
+</project>
