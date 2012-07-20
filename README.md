@@ -11,6 +11,11 @@ and generating power law distributed data. All methods are implemented for
 continuous data, discrete data and the approximation of discrete data with a 
 continuous distribution.
 
+If you use maven and Git, you can check the project out directly from github. If
+not, you can download the whole repository as a zip file or tar ball. JAR 
+releases and Maven repositories are not currently available, but we're working 
+on it.
+
 # The Basics
 
 The main thing you're likely to want to do is estimate the exponent for your 
@@ -48,7 +53,7 @@ analogous way. Since the methods in Discrete are a bit slower than those in
 Continuous, you can also use DiscreteApproximate, which approximates a discrete
 power law with a continuous one. According to Clauset, this use is justified if
 xMin is larger than 6. For xMin > 1000 you can safely use the approximate 
-version.   
+version.
 
 #The Details
 
