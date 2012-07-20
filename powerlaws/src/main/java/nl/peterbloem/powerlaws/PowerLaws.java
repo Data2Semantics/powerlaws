@@ -17,7 +17,7 @@ public class PowerLaws
 	 * Clauset 2007.
 	 * 
 	 */
-	public static boolean KS_CORRECT = false;
+	public static boolean KS_CORRECT = true;
 	
 	/**
 	 * The default random seed. May be changed during runtime.
