@@ -105,4 +105,15 @@ the results in Clauset 2007.
 
 The constant PowerLaws.KS_CORRECT determines which version of the KS test is 
 used. If true, the theoretically correct version is used, if false, the version 
-based on the reference implementation is used.   
+based on the reference implementation is used.
+
+# Contact
+
+For bug fixes and suggestions, GitHub is preferred (send pbloem a message or 
+create a tocket). If you don't have a GitHub account you can email to 
+p & peterbloem & nl. (replacing the ampersands with an at symbol and a dot 
+respectively).
+
+
+
+  
