@@ -59,8 +59,8 @@ small change in the data leads to a massively different value, then we cannot
 rely on it, or we must gather more data.
 
 We estimate the uncertainty by _bootstrapping_. We repeat the experiment a large 
-number of times (1000 to 10000) with datasets that are sampled with replacement
-from the original dataset. For each we record the measured exponent, the xMin 
+number of times (1000 to 10000) with data sets that are sampled with replacement
+from the original data set. For each we record the measured exponent, the xMin 
 parameter and the number of points in the tail. In each case the sample standard 
 deviation of the recorded values is the uncertainty.
 
@@ -68,9 +68,9 @@ deviation of the recorded values is the uncertainty.
 
 Any data can have a power law fit to it. To ascertain whether the power law is
 a proper model, we must calculate the significance. To do this, we generate 
-a large number of synthetic datasets like our original dataset and fit a model
+a large number of synthetic data sets like our original data set and fit a model
 to it. We then calculate the KS statistic between the generated data and its 
-model. The ratio of generated datasets with a distance higher than that of our 
+model. The ratio of generated data sets with a distance higher than that of our 
 fit is the probability of seeing a fit as 'bad' as ours given that the data comes
 from a power law distribution.
 
@@ -84,7 +84,11 @@ double significance = model.significance(data, 0.01);
 ```
 
 The calculation of the significance is by far the most expensive process. For a 
-large dataset, the process an easily take hours.
+large data set, the process an easily take hours. Note that this is a 
+significance test for the the power law hypothesis (rather than the null 
+hypothesis) so that _high_ values mean that the power law is a good fit. Clauset 
+et al. suggest that for values below 0.01 the power law hypothesis should be 
+rejected. 
 
 ## Randomness
 
@@ -110,7 +114,7 @@ based on the reference implementation is used.
 # Contact
 
 For bug fixes and suggestions, GitHub is preferred (send pbloem a message or 
-create a tocket). If you don't have a GitHub account you can email to 
+create a ticket). If you don't have a GitHub account you can email to 
 p & peterbloem & nl. (replacing the ampersands with an at symbol and a dot 
 respectively).
 
