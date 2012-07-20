@@ -255,4 +255,34 @@ public class Discrete extends AbstractPowerLaw<Integer>
 			return - n * log(zeta(alpha, xMin)) - alpha * sum;
 		}
 	}
+	
+	protected static Uncertainties uncertainties(List<Integer> data, int bootstrapSize)
+	{
+		List<Double> exponents = new ArrayList<Double>(bootstrapSize);
+		List<Integer> ntails = new ArrayList<Integer>(bootstrapSize);
+		List<Integer> xMins = new ArrayList<Integer>(bootstrapSize);
+		
+		List<Integer> bData = new ArrayList<Integer>(bootstrapSize);
+		for(int i : series(bootstrapSize))
+		{
+			// * Draw data randomly
+			bData.clear();
+			for(int j : series(data.size()))
+				bData.add(data.get(PowerLaws.random.nextInt(data.size())));
+				
+			// * fit model
+			Discrete cpl = Discrete.fit(bData).fit();
+			
+			// * extract parameters
+			exponents.add(cpl.exponent());
+			xMins.add(cpl.xMin());
+			ntails.add(cpl.tailSize(data));
+		}
+		
+		double nTailUncertainty    = Functions.standardDeviation(ntails), 
+		       xMinUncertainty     = Functions.standardDeviation(xMins),
+		       exponentUncertainty = Functions.standardDeviation(exponents);	
+		
+		return new Uncertainties(exponentUncertainty, xMinUncertainty, nTailUncertainty);
+	}
 }

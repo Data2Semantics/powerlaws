@@ -1,6 +1,7 @@
 package nl.peterbloem.powerlaws;
 
 import static nl.peterbloem.powerlaws.PowerLaws.KS_CORRECT;
+import static nl.peterbloem.util.Series.series;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,6 +46,22 @@ public abstract class AbstractPowerLaw<T extends Number>
 	public double cdfComp(T x)
 	{
 		return 1.0 - cdf(x);
+	}
+	
+	/**
+	 * Returns the number of elements in the dataset that fall in the tail of 
+	 * this distribution (ie. are larger that or equal to xMin).
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public int tailSize(Collection<T> data)
+	{
+		int n = 0;
+		for(T d : data)
+			if(d.doubleValue() >= xMin().doubleValue()) n++;
+		
+		return n;
 	}
 
 	@Override
@@ -113,6 +130,7 @@ public abstract class AbstractPowerLaw<T extends Number>
 		
 		return above / (double) n;
 	}
+
 	
 	/**
 	 * Fit a power law to data in the same way this model might be created. 

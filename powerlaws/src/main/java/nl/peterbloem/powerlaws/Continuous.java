@@ -1,6 +1,7 @@
 package nl.peterbloem.powerlaws;
 
 import static nl.peterbloem.powerlaws.PowerLaws.KS_CORRECT;
+import static nl.peterbloem.util.Series.series;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -114,5 +115,35 @@ public class Continuous extends AbstractPowerLaw<Double>
 			
 			return new Continuous(xMin, 1.0 + n / sum);
 		}
+	}
+	
+	protected static Uncertainties uncertainties(List<Double> data, int bootstrapSize)
+	{
+		List<Double> exponents = new ArrayList<Double>(bootstrapSize);
+		List<Integer> ntails = new ArrayList<Integer>(bootstrapSize);
+		List<Double> xMins = new ArrayList<Double>(bootstrapSize);
+		
+		List<Double> bData = new ArrayList<Double>(bootstrapSize);
+		for(int i : series(bootstrapSize))
+		{
+			// * Draw data randomly
+			bData.clear();
+			for(int j : series(data.size()))
+				bData.add(data.get(PowerLaws.random.nextInt(data.size())));
+				
+			// * fit model
+			Continuous cpl = Continuous.fit(bData).fit();
+			
+			// * extract parameters
+			exponents.add(cpl.exponent());
+			xMins.add(cpl.xMin());
+			ntails.add(cpl.tailSize(data));
+		}
+		
+		double nTailUncertainty    = Functions.standardDeviation(ntails), 
+		       xMinUncertainty     = Functions.standardDeviation(xMins),
+		       exponentUncertainty = Functions.standardDeviation(exponents);	
+		
+		return new Uncertainties(exponentUncertainty, xMinUncertainty, nTailUncertainty);
 	}
 }

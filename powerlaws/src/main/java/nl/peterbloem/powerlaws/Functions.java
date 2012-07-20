@@ -243,4 +243,44 @@ public class Functions
 	 */
 	public static Logger log() { return Logger.getLogger(Logger.GLOBAL_LOGGER_NAME); }
 		
+	public static double mean(List<? extends Number> values)
+	{
+	
+		double sum = 0.0;
+		double num = 0.0;
+		
+		for(Object value : values)
+		{
+			double v = ((Number) value).doubleValue();
+			if(!(Double.isNaN(v) || Double.isNaN(v)))
+			{
+				sum += v; 
+				num ++;
+			}
+		}
+		
+		return sum/num;
+	}	
+	
+	public static double standardDeviation(List<? extends Number> values)
+	{
+		double mean = mean(values);
+		double num = 0.0;
+		
+		double varSum = 0.0;
+		for(Object value : values)
+		{
+			double v = ((Number) value).doubleValue();
+			
+			if(!(Double.isNaN(v) || Double.isNaN(v)))
+			{
+				double diff = mean - v;
+				varSum += diff * diff;
+				num++;
+			}
+		}
+
+		double variance = varSum/(num - 1);
+		return Math.sqrt(variance);
+	}
 }
