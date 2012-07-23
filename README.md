@@ -12,10 +12,10 @@ continuous data, discrete data and the approximation of discrete data with a
 continuous distribution.
 
 If you use maven and Git, you can check the project out directly from GitHub. If
-not, you can download the whole repository as a zip file or tar ball. JAR 
-releases and Maven repositories are not currently available, but we're working 
-on it.
-
+not, you can download the whole repository as a zip file or tar ball. A JAR
+ download is provided at https://github.com/pbloem/powerlaws/downloads although 
+this may not contain all the most recent code.
+ 
 # The Basics
 
 The main thing you're likely to want to do is estimate the exponent for 
