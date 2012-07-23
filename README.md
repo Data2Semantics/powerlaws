@@ -2,23 +2,23 @@ Power laws
 =========
 
 This is a small java library for the analysis of power law distributed data. The
-methods implemented are all taken form the paper 'Power-Law Distributions in 
-Empirical Data' by Clauset, Shalizi and Newman (2007) and its reference 
+methods implemented are all taken form the paper _Power-Law Distributions in 
+Empirical Data_ by Clauset, Shalizi and Newman (2007) and its reference 
 implementations available at http://tuvalu.santafe.edu/~aaronc/powerlaws/
 
 It contains facilities for estimating parameters, uncertainty and significance 
-and generating power law distributed data. All methods are implemented for 
+and for generating power law distributed data. All methods are implemented for 
 continuous data, discrete data and the approximation of discrete data with a 
 continuous distribution.
 
-If you use maven and Git, you can check the project out directly from github. If
+If you use maven and Git, you can check the project out directly from GitHub. If
 not, you can download the whole repository as a zip file or tar ball. JAR 
 releases and Maven repositories are not currently available, but we're working 
 on it.
 
 # The Basics
 
-The main thing you're likely to want to do is estimate the exponent for your 
+The main thing you're likely to want to do is estimate the exponent for 
 some data. Say you have your data as a Collection of double values called 'data'.
 You can estimate the exponent as follows:
 
@@ -68,6 +68,23 @@ number of times (1000 to 10000) with data sets that are sampled with replacement
 from the original data set. For each we record the measured exponent, the xMin 
 parameter and the number of points in the tail. In each case the sample standard 
 deviation of the recorded values is the uncertainty.
+
+## Varying xMin
+
+The method of fitting described above uses a maximum likelihood estimator to 
+estimate the exponent for a given xMin parameter. It then chooses as xMin the 
+data point for which the resulting distribution has the smallest KS statistic to 
+the data. If you want to test different values of xMin, you can use the Fit 
+object which represents the intermediate stage of fitting a power law to data:
+
+```java
+// * Create a Fit object
+Fit<Double, PowerLaw<Double>> fit = Continuous.fit(data);
+
+// * Print out the distances for all of the data points
+for(double datum : data)
+	System.out.println(datum + ": " + fit.fit(datum)); 
+```
 
 ## Significance
 
@@ -123,6 +140,11 @@ create a ticket). If you don't have a GitHub account you can email to
 p & peterbloem & nl. (replacing the ampersands with an at symbol and a dot 
 respectively).
 
+# License
 
+This library is released under the MIT license. You are free to create derivative
+works, including for commercial purposes, and to re-release under another license.
+Attribution is not required, but it is always appreciated. See the file 
+LICENSE.txt for the full text of the license.
 
   
