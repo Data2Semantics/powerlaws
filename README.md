@@ -147,4 +147,5 @@ works, including for commercial purposes, and to re-release under another licens
 Attribution is not required, but it is always appreciated. See the file 
 LICENSE.txt for the full text of the license.
 
-  
+![githalytics.com alpha](https://cruel-carlota.pagodabox.com/fbbc7703db32ced91f2edd767774a2dc)
+
