@@ -117,7 +117,7 @@ public abstract class AbstractPowerLaw<T extends Number>
 		int above = 0;
 		for(int i : Series.series(n))
 		{
-			if(i % 500 == 0 && i != 0)
+			if(i % 1 == 0 && i != 0)
 				Functions.log().info("* finished " + i + " trials of "+n+".");
 			
 			List<T> generated = generate(data, data.size());
