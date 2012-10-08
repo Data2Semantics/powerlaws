@@ -143,7 +143,7 @@ public abstract class AbstractPowerLaw<T extends Number>
 	@Override
 	public double significance(Collection<? extends T> data, double epsilon, int dataSamples)
 	{
-		return significance(data, (int)(0.25 * Math.pow(epsilon, -2.0)));
+		return significance(data, (int)(0.25 * Math.pow(epsilon, -2.0)), dataSamples);
 	}
 	
 	public double significance(Collection<? extends T> data, double epsilon)
