@@ -72,9 +72,9 @@ public class Continuous extends AbstractPowerLaw<Double>
 	
 	
 	@Override
-	protected PowerLaw<Double> fitInternal(Collection<? extends Double> data)
+	protected PowerLaw<Double> fitInternal(Collection<? extends Double> data, int dataSamples)
 	{
-		return Continuous.fit(data).fit();
+		return Continuous.fit(data).fitSampled(dataSamples);
 	}
 
 	/**

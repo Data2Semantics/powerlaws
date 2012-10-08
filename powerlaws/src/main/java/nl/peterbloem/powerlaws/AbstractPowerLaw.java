@@ -110,7 +110,7 @@ public abstract class AbstractPowerLaw<T extends Number>
 	}
 	
 	@Override
-	public double significance(Collection<? extends T> data, int n)
+	public double significance(Collection<? extends T> data, int n, int dataSamples)
 	{
 		double threshold = ksTest(data);
 		
@@ -122,7 +122,7 @@ public abstract class AbstractPowerLaw<T extends Number>
 			
 			List<T> generated = generate(data, data.size());
 		
-			PowerLaw<T> generatedPL = fitInternal(generated);
+			PowerLaw<T> generatedPL = fitInternal(generated, dataSamples);
 			
 			if(generatedPL.ksTest(generated) >= threshold)
 				above ++;
@@ -138,12 +138,22 @@ public abstract class AbstractPowerLaw<T extends Number>
 	 * @param data
 	 * @return
 	 */
-	protected abstract PowerLaw<T> fitInternal(Collection<? extends T> data);
+	protected abstract PowerLaw<T> fitInternal(Collection<? extends T> data, int dataSamples);
 	
 	@Override
-	public double significance(Collection<? extends T> data, double epsilon)
+	public double significance(Collection<? extends T> data, double epsilon, int dataSamples)
 	{
 		return significance(data, (int)(0.25 * Math.pow(epsilon, -2.0)));
+	}
+	
+	public double significance(Collection<? extends T> data, double epsilon)
+	{
+		return significance(data, epsilon, data.size());
+	}
+	
+	public double significance(Collection<? extends T> data, int n)
+	{
+		return significance(data, n, data.size());
 	}
 	
 	public static abstract class AbstractFit<T extends Number, P extends PowerLaw<T>> 
@@ -167,11 +177,26 @@ public abstract class AbstractPowerLaw<T extends Number>
 		@Override
 		public P fit()
 		{
+			return fitSampled(data.size());
+		}
+		
+		@Override
+		public P fitSampled(int samples)
+		{
 			P best = null;
 			double bestDistance = Double.POSITIVE_INFINITY;
 			
-			for(T datum : unique)
+			int step;
+			if(samples == data.size())
+				step = 1;
+			else
+				step = (int)Math.floor(data.size()/(double)samples);
+			
+			int i = 0;
+			while(i < data.size())
 			{
+				T datum = data.get(i);
+				
 				P current = fit(datum);
 				double currentDistance = current.ksTest(data);
 				
@@ -180,6 +205,8 @@ public abstract class AbstractPowerLaw<T extends Number>
 					bestDistance = currentDistance;
 					best = current;
 				}
+				
+				i += step;
 			}
 
 			return best;

@@ -110,6 +110,10 @@ public interface PowerLaw<T extends Number> extends Generator<T>
 	 */	
 	public double significance(Collection<? extends T> data, double epsilon);
 	
+	public double significance(Collection<? extends T> data, int sampleSize, int dataSamples);
+
+	public double significance(Collection<? extends T> data, double epsilon, int dataSamples);
+	
 	/**
 	 * Represents the intermediate stage of fitting a power law to data. 
 	 * 
@@ -126,6 +130,17 @@ public interface PowerLaw<T extends Number> extends Generator<T>
 		 */
 		public P fit();
 		
+		/**
+		 * Performs the MLE estimator for the exponent on all data but only uses
+	 	 * a subsample of the data to find x. The subsample is created by 
+	 	 * sorting the data and choosing elements at regular intervals in the 
+	 	 * indexing so that the total size is approximately equal to 
+	 	 * the parameter samples.  
+		 * 
+		 * @param samples
+		 * @return
+		 */
+		public P fitSampled(int samples);
 		
 		/**
 		 * Estimate a power law from the data with appropriate xMin.

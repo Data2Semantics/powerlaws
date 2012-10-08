@@ -72,9 +72,9 @@ public class DiscreteApproximate extends AbstractPowerLaw<Integer>
 	}
 
 	@Override
-	protected PowerLaw<Integer> fitInternal(Collection<? extends Integer> data)
+	protected PowerLaw<Integer> fitInternal(Collection<? extends Integer> data, int dataSamples)
 	{
-		return DiscreteApproximate.fit(data).fit();
+		return DiscreteApproximate.fit(data).fitSampled(dataSamples);
 	}
 
 	public static PowerLaw.Fit<Integer, DiscreteApproximate> fit(Collection<? extends Integer> data)

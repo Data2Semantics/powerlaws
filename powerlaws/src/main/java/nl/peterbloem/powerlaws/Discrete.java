@@ -189,9 +189,9 @@ public class Discrete extends AbstractPowerLaw<Integer>
 	}
 
 	@Override
-	protected PowerLaw<Integer> fitInternal(Collection<? extends Integer> data)
+	protected PowerLaw<Integer> fitInternal(Collection<? extends Integer> data, int dataSamples)
 	{
-		return Discrete.fit(data).fit();
+		return Discrete.fit(data).fitSampled(dataSamples);
 	}
 
 	/**
