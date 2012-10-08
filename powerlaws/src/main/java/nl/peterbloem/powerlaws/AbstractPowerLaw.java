@@ -148,12 +148,12 @@ public abstract class AbstractPowerLaw<T extends Number>
 	
 	public double significance(Collection<? extends T> data, double epsilon)
 	{
-		return significance(data, epsilon, data.size());
+		return significance(data, epsilon, -1);
 	}
 	
 	public double significance(Collection<? extends T> data, int n)
 	{
-		return significance(data, n, data.size());
+		return significance(data, n, -1);
 	}
 	
 	public static abstract class AbstractFit<T extends Number, P extends PowerLaw<T>> 
@@ -177,7 +177,7 @@ public abstract class AbstractPowerLaw<T extends Number>
 		@Override
 		public P fit()
 		{
-			return fitSampled(data.size());
+			return fitSampled(-1);
 		}
 		
 		@Override
@@ -187,15 +187,15 @@ public abstract class AbstractPowerLaw<T extends Number>
 			double bestDistance = Double.POSITIVE_INFINITY;
 			
 			int step;
-			if(samples == data.size())
+			if(samples == unique.size() || samples == -1)
 				step = 1;
 			else
-				step = (int)Math.floor(data.size()/(double)samples);
+				step = (int)Math.floor(unique.size()/(double)samples);
 			
 			int i = 0;
-			while(i < data.size())
+			while(i < unique.size())
 			{
-				T datum = data.get(i);
+				T datum = unique.get(i);
 				
 				P current = fit(datum);
 				double currentDistance = current.ksTest(data);
