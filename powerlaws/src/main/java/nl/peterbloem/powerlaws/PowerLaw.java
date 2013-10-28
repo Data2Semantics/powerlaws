@@ -81,7 +81,7 @@ public interface PowerLaw<T extends Number> extends Generator<T>
 	 * Calculates the significance of of this model as a hypothesis for the 
 	 * given data. Based on Clauset 2007 section 4.
 	 * 
-	 * The basci method for calculating significance should be as follows: 
+	 * The basic method for calculating significance should be as follows: 
 	 * First compute the KS distance d for this model and the data. Then
 	 * generate n datasets for this distribution (same size as the argument),
 	 * fit a model to each and calculate its KS distance, and return the 
@@ -96,7 +96,7 @@ public interface PowerLaw<T extends Number> extends Generator<T>
 	 * Calculates the significance of of this model as a hypothesis for the 
 	 * given data. Based on Clauset 2007 section 4.
 	 * 
-	 * The basci method for calculating significance should be as follows: 
+	 * The basic method for calculating significance should be as follows: 
 	 * First compute the KS distance d for this model and the data. Then
 	 * generate n datasets for this distribution (same size as the argument),
 	 * fit a model to each and calculate its KS distance, and return the 
