@@ -11,10 +11,27 @@ and for generating power law distributed data. All methods are implemented for
 continuous data, discrete data and the approximation of discrete data with a 
 continuous distribution.
 
-If you use maven and Git, you can check the project out directly from GitHub. If
-not, you can download the whole repository as a zip file or tar ball. A JAR
- download is provided at https://github.com/pbloem/powerlaws/downloads although 
-this may not contain all the most recent code.
+# Installation
+
+You can use [jitpack.io](https://jitpack.io/#Data2Semantics/powerlaws) to add the powerlaws library to your project. Simply add 
+the following repository to your pom.xml:
+```xml
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+```
+And the following dependency
+```
+	<dependency>
+	    <groupId>com.github.Data2Semantics</groupId>
+	    <artifactId>powerlaws</artifactId>
+	    <version>v0.1.0</version>
+	</dependency>
+```
+Check [the releases](https://github.com/Data2Semantics/powerlaws/releases) for the version number of the latest release.
  
 # The Basics
 
